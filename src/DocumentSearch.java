@@ -4,7 +4,7 @@ import java.util.*;
 public class DocumentSearch {
 	static String term;
 	static int search;
-	static ArrayList<File> docs = new ArrayList<File>();
+	static ArrayList<FileRelevency> docs = new ArrayList<File>();
 
 	public static void main(String[] args) {
 		DocumentSearch d = new DocumentSearch();
@@ -55,7 +55,8 @@ public class DocumentSearch {
 	}
 
 	public void stringMatch() {
-
+		
+		
 	}
 
 	public void regEx() {
