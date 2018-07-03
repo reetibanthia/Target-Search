@@ -64,8 +64,46 @@ public class DocumentSearch {
 
 	}
 
+	public void read(int type) {
+		s = new Scanner(System.in);
+		Pattern p = Pattern.compile(term.trim());
+		String temp = "";
+		for (FileRelevency fr : docs) {
+			try {
+				s = new Scanner(fr.getFile());
+				if (type == 0) {
+					while (s.hasNextLine()) {
+						temp = s.nextLine().toLowerCase().replaceAll("\\p{Punct}", "");
+						while (temp.indexOf(term) != -1) {
+							fr.addCount();
+							temp = temp.substring(temp.indexOf(term) + term.length() - 1);
+						}
+					}
+				}
+				if (type == 1) {
+					if (s.hasNextLine()) {
+						temp = s.useDelimiter("\\Z").next().toLowerCase();
+						Matcher m = p.matcher(temp);
+						int start = 0;
+						try {
+							while (m.find(start)) {
+								fr.addCount();
+								start = m.start() + 1;
+							}
+						} catch (Exception e) {
+
+						}
+					}
+				}
+			} catch (FileNotFoundException e) {
+				e.printStackTrace();
+			}
+		}
+	}
+
 	public void stringMatch() {
 		startTime = System.currentTimeMillis();
+		/*
 		s = new Scanner(System.in);
 		String temp = "";
 		for (FileRelevency fr : docs) {
@@ -82,11 +120,14 @@ public class DocumentSearch {
 				e.printStackTrace();
 			}
 		}
+		*/
+		read(0);
 		endTime = System.currentTimeMillis();
 	}
 
 	public void regEx() {
 		startTime = System.currentTimeMillis();
+/*
 		s = new Scanner(System.in);
 		String temp = "";
 		Pattern p = Pattern.compile(term.trim());
@@ -109,6 +150,8 @@ public class DocumentSearch {
 				e.printStackTrace();
 			}
 		}
+*/
+		read(1);
 		endTime = System.currentTimeMillis();
 	}
 
