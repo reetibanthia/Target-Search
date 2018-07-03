@@ -1,4 +1,5 @@
 import java.io.File;
+import java.util.Comparator;
 
 public class FileRelevency {
 	File file;
@@ -13,6 +14,10 @@ public class FileRelevency {
 		return file;
 	}
 	
+	public String getName() {
+		return file.getName();
+	}
+	
 	public int getCount() {
 		return count;
 	}
@@ -20,5 +25,5 @@ public class FileRelevency {
 	public void addCount() {
 		count++;
 	}
-
+	
 }

@@ -2,6 +2,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.*;
 
+
 public class DocumentSearch {
 	static String term;
 	static int search;
@@ -11,6 +12,7 @@ public class DocumentSearch {
 		DocumentSearch d = new DocumentSearch();
 		d.populateDocs();
 		d.prompt();
+		d.printSorted();
 	}
 
 	public void populateDocs() {
@@ -72,14 +74,10 @@ public class DocumentSearch {
 				while(temp.indexOf(term) != -1) {
 					fr.addCount();
 					temp = temp.substring(temp.indexOf(term)+term.length()-1);
-					System.out.println(temp);
+//					System.out.println(temp);
 				}
 			}
-		}
-		for(FileRelevency fr: docs) {
-			System.out.println(fr.getFile().getName() + "  "+ fr.getCount());
-		}
-		
+		}		
 	}
 
 	public void regEx() {
@@ -90,8 +88,19 @@ public class DocumentSearch {
 
 	}
 	
+	public class CustomComparator implements Comparator<FileRelevency> {
+	    @Override
+		public int compare(FileRelevency o1, FileRelevency o2) {
+			return o2.getCount() - o1.getCount();
+		}
+	}
+	
 	public void printSorted() {
-		
+		System.out.println();
+		Collections.sort(docs, new CustomComparator());
+		for(FileRelevency fr: docs) {
+			System.out.format("%-40s%-40d\n", fr.getName(), fr.getCount());
+		}
 	}
 
 }
