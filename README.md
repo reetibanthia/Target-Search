@@ -30,7 +30,7 @@ for search method 3) Indexed: 1
 ## Notes
 
 I haven't added the unit tests in here. I have tested with large data sets and will have the unit tests by the meeting.  I noticed that the index search is more efficient with larger data sets.
-I tried to make the code as non-repetitive as possible (the the read() method). I'm sure with more time it could've been more efficient.  However with the small data sets so far it all works.
+I tried to make the code as non-repetitive as possible (the the read() method). I'm sure with more time it could've been more efficient.
 
 ## Scaling
 
